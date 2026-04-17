@@ -37,7 +37,7 @@ Set the URL in either one of these places:
 2. In `參數產生器`, choose `短碼 id (Google Sheet/App Script)`.
 3. Click `產生網址`.
 4. You will get a short link like:
-   - `https://your-domain/path/index.html?id=Ab3Kx9Q`
+  - `https://your-domain/path/?id=Ab3Kx9Q`
 
 ## API contract
 

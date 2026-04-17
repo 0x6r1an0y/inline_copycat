@@ -25,11 +25,23 @@ const SHORT_PARAM_KEYS = Object.freeze({
 const PACKED_PARAM_KEYS = ['d', 'data', 'payload'];
 const SHORT_CODE_ID_KEYS = ['id', 'sid'];
 const SHORT_CODE_API_QUERY_KEYS = ['api', 'api-url', 'endpoint'];
-const SHORT_CODE_API_META_SELECTOR = 'meta[name="short-code-api"]';
 const SHORT_CODE_API_STORAGE_KEY = 'inline-copycat-short-code-api';
 const SHORT_ID_LOADING_CLASS = 'is-short-id-loading';
+const DEFAULT_SHORT_CODE_API_B64 = 'aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4NFJLWXhWLW95NHlZWFM1YmNzblNrYXppNlU2NU1BcFNObUc0ckZvUVFxS0R2MXBCSEdtV1hMdFdMekZKWkx4bG9ZQS9leGVj';
 
 const queryParams = new URLSearchParams(window.location.search);
+
+const decodeBase64Ascii = (value) => {
+  if (!value) {
+    return '';
+  }
+
+  try {
+    return atob(value);
+  } catch {
+    return '';
+  }
+};
 
 const toggleShortIdLoading = (isLoading, text) => {
   const root = document.documentElement;
@@ -155,20 +167,15 @@ const readConfiguredApiUrl = () => {
     }
   }
 
-  const metaValue = document
-    .querySelector(SHORT_CODE_API_META_SELECTOR)
-    ?.getAttribute('content')
-    ?.trim();
-
-  const fromMeta = pickFirstValidApiUrl(metaValue || '');
-  if (fromMeta) {
-    return fromMeta;
-  }
-
   const storedValue = getFromLocalStorage(SHORT_CODE_API_STORAGE_KEY);
   const fromStorage = pickFirstValidApiUrl(storedValue);
   if (fromStorage) {
     return fromStorage;
+  }
+
+  const fromDefault = pickFirstValidApiUrl(decodeBase64Ascii(DEFAULT_SHORT_CODE_API_B64));
+  if (fromDefault) {
+    return fromDefault;
   }
 
   return '';
