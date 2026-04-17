@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title id="pageTitle">候位資訊</title>
+  <meta name="description" content="查詢、保留、取消您的訂位">
+  <meta name="short-code-api" content="">
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('id') || params.get('sid')) {
+        document.documentElement.classList.add('is-short-id-loading');
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="short-id-loader" id="shortIdLoader" role="status" aria-live="polite" aria-label="資料載入中">
+    <div class="short-id-spinner" aria-hidden="true"></div>
+    <p class="short-id-loader-text" id="shortIdLoaderText">資料載入中，請稍候...</p>
+  </div>
+
+  <div class="page-wrap">
+    <main class="page" aria-label="候位資訊">
+      <section class="store-info" aria-label="店家資訊">
+        <h1 class="store-name" id="storeName">店家名稱</h1>
+        <a class="store-link" data-phone-link href="tel:0000000000">0000-000-000</a>
+        <a
+          id="storeAddressLink"
+          class="store-link"
+          href="https://maps.google.com"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          店家地址
+        </a>
+      </section>
+
+      <section class="guest-info" aria-label="顧客資訊">
+        <p class="greeting">林先生您好</p>
+        <p class="serial">您的序號：<strong id="serialNumber">---</strong></p>
+      </section>
+
+      <section class="status-card" aria-label="候位狀態">
+        <div class="status-icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="2"/>
+            <path d="M20 33.5L28 41L45 23" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2 class="status-title">您尚未入座</h2>
+        <p class="status-desc">請找您鄰近的服務人員報到</p>
+
+        <a class="promo-btn" id="promoBtn" href="https://inline.app" target="_blank" rel="noreferrer noopener">
+          查看菜單
+        </a>
+      </section>
+
+      <section class="faq" aria-label="常見問題">
+        <h3 class="faq-title">輪到我的時候，我該做什麼？</h3>
+
+        <article class="faq-item is-open">
+          <button class="faq-trigger" type="button" aria-expanded="true">
+            <span>當您收到語音通知</span>
+            <span class="arrow" aria-hidden="true"></span>
+          </button>
+          <div class="faq-body">
+            <p>按下數字鍵1，表示要保留座位，餐廳則會為您保留座位。</p>
+            <p>按下數字鍵2，表示要取消座位，餐廳則會將您的座位取消。</p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <button class="faq-trigger" type="button" aria-expanded="false">
+            <span>當您收到簡訊通知</span>
+            <span class="arrow" aria-hidden="true"></span>
+          </button>
+          <div class="faq-body">
+            <p>點選簡訊內的連結進入網站，然後點選保留候位以保留您的座位。</p>
+            <p>若不需要候位，請點選取消候位。</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="contact" aria-label="其他問題">
+        <p>其他問題如有其他問題請直接聯繫店家 <a data-phone-link href="tel:0000000000">0000-000-000</a></p>
+        <!-- <p><a href="generator.html">開啟參數產生器</a></p> -->
+      </section>
+    </main>
+
+    <footer class="site-footer" aria-label="網站資訊">
+      <p>Copyright © 2026 inline Ltd. All Rights Reserved</p>
+      <p>
+        <a href="https://inline.app/tos" target="_blank" rel="noreferrer noopener">Terms of Service</a>
+        /
+        <a href="https://inline.app/privacy" target="_blank" rel="noreferrer noopener">Privacy Policy</a>
+      </p>
+      <p>Powered by <a href="https://inline.app/" target="_blank" rel="noreferrer noopener">inline</a> Version 8.29.1</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

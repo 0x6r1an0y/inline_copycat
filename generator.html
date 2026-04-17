@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>參數產生器</title>
+  <meta name="description" content="產生候位頁參數與短碼連結">
+  <meta name="short-code-api" content="">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-wrap">
+    <main class="page" aria-label="參數產生器頁面">
+      <section class="store-info" aria-label="工具資訊">
+        <h1 class="store-name">參數產生器</h1>
+        <a class="store-link" href="index.html">返回候位頁</a>
+      </section>
+
+      <section class="param-generator" aria-label="參數產生器">
+        <h2 class="generator-title">建立分享連結</h2>
+        <p class="generator-desc">可選擇短鍵參數、打包參數或 Google Sheet 短碼模式。</p>
+
+        <form id="paramGeneratorForm" class="generator-grid">
+          <label class="generator-field generator-field--full">
+            <span>目標頁面 URL（預設為 index.html）</span>
+            <input id="genTargetUrl" type="url" placeholder="https://your-domain/index.html">
+          </label>
+
+          <label class="generator-field generator-field--full">
+            <span>Apps Script Web App URL（短碼模式必填）</span>
+            <input id="genApiUrl" type="url" placeholder="https://script.google.com/macros/s/.../exec">
+          </label>
+
+          <label class="generator-field">
+            <span>頁面標題 (title)</span>
+            <input id="genTitle" type="text" placeholder="候位資訊">
+          </label>
+
+          <label class="generator-field">
+            <span>店名 (store-name)</span>
+            <input id="genStoreName" type="text" placeholder="店家名稱">
+          </label>
+
+          <label class="generator-field">
+            <span>電話 (phone-number)</span>
+            <input id="genPhone" type="text" placeholder="0900-000-000">
+          </label>
+
+          <label class="generator-field">
+            <span>序號 (serial)</span>
+            <input id="genSerial" type="text" placeholder="067">
+          </label>
+
+          <label class="generator-field generator-field--full">
+            <span>地址文字 (address)</span>
+            <input id="genAddressText" type="text" placeholder="桃園市中壢區XX路XX號">
+          </label>
+
+          <label class="generator-field generator-field--full">
+            <span>地址連結 (store-link)</span>
+            <input id="genAddressUrl" type="url" placeholder="https://maps.google.com/...">
+          </label>
+
+          <label class="generator-field">
+            <span>按鈕文字 (promo-btn)</span>
+            <input id="genPromoText" type="text" placeholder="查看菜單">
+          </label>
+
+          <label class="generator-field">
+            <span>按鈕連結 (promo-link)</span>
+            <input id="genPromoUrl" type="url" placeholder="https://example.com/menu">
+          </label>
+
+          <label class="generator-field generator-field--full">
+            <span>產生模式</span>
+            <select id="genMode">
+              <option value="short" selected>短鍵參數 (t/sn/ph...)</option>
+              <option value="packed">單一參數 d (打包 JSON)</option>
+              <option value="short-id">短碼 id (Google Sheet/App Script)</option>
+            </select>
+          </label>
+
+          <div class="generator-actions generator-field--full">
+            <button class="generator-btn" type="submit">產生網址</button>
+            <button class="generator-btn is-secondary" id="genCopyBtn" type="button">複製</button>
+            <a class="generator-btn is-link" id="genOpenBtn" href="#" target="_blank" rel="noreferrer noopener">開啟</a>
+          </div>
+
+          <label class="generator-field generator-field--full">
+            <span>輸出網址</span>
+            <textarea id="genOutput" rows="4" readonly></textarea>
+          </label>
+
+          <p class="generator-note generator-field--full" id="genNote">目前使用 Base64URL 混淆（非加密）。</p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer" aria-label="網站資訊">
+      <p>Copyright © 2026 inline Ltd. All Rights Reserved</p>
+    </footer>
+  </div>
+
+  <script src="generator.js"></script>
+</body>
+</html>
